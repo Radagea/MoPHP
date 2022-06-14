@@ -7,7 +7,8 @@ use App\App\View\View;
 
 class Routing extends AbstractController {
     public function getView() : View {
-        $data["route"] = $this->getParam('id');
+        $data["route"] = $this->getRoute();
+        $data["param"] = "Param: ".$this->getParam('id');
         return new View('index.html',$data);
     }
 }

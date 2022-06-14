@@ -5,13 +5,13 @@
         "controller" : "Index"
     },
     {
-        "name" : "Routing",
-        "path" : "/routing/{id}",
-        "controller" : "Routing"
-    },
-    {
         "name" : "404",
         "path" : "*",
         "controller" : "errors\\Err404"
+    },
+    {
+        "name" : "Routing",
+        "path" : "/routing/{id}",
+        "controller" : "Routing"
     }
 ]

@@ -8,6 +8,7 @@ use App\App\Routing\Route;
 class Router {
     private Array $routes = [];
     private Route $currentRoute;
+    private Route $err404;
 
 
     public function __construct() {
@@ -16,6 +17,8 @@ class Router {
         $datas = json_decode($fileData,true);
         
         $this->add($datas);
+
+        $this->err404 = new Route();
 
         $this->recognizeRoute();
         $this->insertController();
@@ -33,23 +36,20 @@ class Router {
         $this->currentRoute = new Route();
         $this->currentRoute->setFullPath($_SERVER['REQUEST_URI']);
         $van = 0;
-        foreach ($this->routes as $route) {;
+        foreach ($this->routes as $route) {
             if ($this->currentRoute->compareWith($route)) {
                $this->currentRoute->setName($route->getName());
                $this->currentRoute->setController($route->getController());
                $van ++;
                break;
            }
+           if ($route->getName() === '404') {
+                $this->err404->setFullPath($route->getFullPath());
+                $this->err404->setController($route->getController());
+           }
         }
         if ($van == 0) {
-            foreach ($this->routes as $route) {
-                if ($route->getName() === '404') {
-                    $this->currentRoute->setName($route->getName());
-                    $this->currentRoute->setFullPath($route->getFullPath());
-                    $this->currentRoute->setController($route->getController());
-                    break;
-                }
-            }
+            $this->currentRoute = $this->err404;
         }
     }
 
@@ -57,22 +57,12 @@ class Router {
         $file = $this->currentRoute->getController();
         $namespace = 'App\\Src\\Controller\\'.$file;
         if (!class_exists($namespace)) {
-            foreach ($this->routes as $route) {
-                if ($route->getName() === '404') {
-                    $this->currentRoute->setName($route->getName());
-                    $this->currentRoute->setFullPath($route->getFullPath());
-                    $this->currentRoute->setController($route->getController());
-                    break;
-                }
-            }
+            $this->currentRoute = $this->err404;
+            $this->insertController();
         }
-        $file = $this->currentRoute->getController();
-        $namespace = 'App\\Src\\Controller\\'.$file;
 
         $controller = new $namespace($this);
         
-        
-
         echo $controller->getView();
     }
 
