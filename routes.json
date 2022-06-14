@@ -6,7 +6,7 @@
     },
     {
         "name" : "Routing",
-        "path" : "/routing",
+        "path" : "/routing/{id}",
         "controller" : "Routing"
     },
     {

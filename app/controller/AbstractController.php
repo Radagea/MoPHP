@@ -3,6 +3,7 @@
 namespace App\App\Controller;
 
 use App\App\Routing\Router;
+use App\App\View\View;
 
 abstract class AbstractController {
 
@@ -20,6 +21,6 @@ abstract class AbstractController {
         return $this->router->getParam($param);
     }
 
-    abstract public function getView() : String;
+    abstract public function getView() : View;
 
 }
