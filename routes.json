@@ -1,0 +1,17 @@
+[
+    {
+        "name" : "Main",
+        "path" : "/",
+        "controller" : "Index"
+    },
+    {
+        "name" : "Routing",
+        "path" : "/routing",
+        "controller" : "Routing"
+    },
+    {
+        "name" : "404",
+        "path" : "*",
+        "controller" : "errors\\Err404"
+    }
+]

@@ -1,0 +1,13 @@
+<header>
+    <nav>
+        <div class="navbar clear">
+            <div class="menu">
+                <ul class="main">
+                    {% for forData in forDatas %}
+                        <li><a href="{{forData.href}}">{{forData.name}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

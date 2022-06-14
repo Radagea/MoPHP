@@ -1,0 +1,135 @@
+* {
+    font-family: 'Arial';
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.clear:before,
+.clear:after {
+  content:" ";
+  display: table
+}
+.clear:after { clear: both }
+
+nav {
+    width: 100%;
+    background: #3A3A3C
+}
+
+nav .navbar,
+.wrapper {
+	width: 95%;
+	max-width: 1200px;
+	margin:0 auto;
+}
+
+nav .menu ul { float: right }
+nav .menu li {
+	float: left;
+	list-style: none;
+}
+
+nav .menu li a {
+	color: #fff;
+	cursor: pointer;
+    text-decoration: none;
+	position: relative;
+	display: block;
+	padding: 12px 20px;
+	transition: background-color .3s
+}
+nav .menu li a:hover {
+	background: #D7BED0;
+	transition: background-color .5s
+}
+
+.animated {
+    width: 100%;
+    height: 31rem;
+    background: #F8CDE0;
+    color: white;
+    text-align: center;
+    background-size: 400% 400%;
+}
+.animated h1 {
+    text-shadow: 1px 2px #7a7a7a;
+}
+.image {
+    margin: 0 auto;
+    width: 20%;
+}
+div.route {
+    margin: 30px auto;
+    width: 15%;
+    padding: 8px;
+    border-radius: 10px;
+    color:  #686868;
+    font-weight: 700;
+    text-align: center;
+    background-color: white;
+    box-shadow: 1px 2px #7a7a7a;
+}
+.arrow {
+    margin-left: auto;
+    margin-right: auto;
+    width: 0;
+    height: 0;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-top: 45px solid #F8CDE0;
+}
+.image img {
+    width: 100%
+}
+
+div.box {
+    width: 100%;
+    margin-top: 20px;
+}
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 50px;
+}
+.grid-item {
+    padding: 20px;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 40px;
+    background: #ededed;
+    box-shadow:  35px 35px 71px #c2c2c2,
+                -35px -35px 71px #ffffff;
+    transition: .3s;
+    cursor: pointer;
+}
+.grid-item img {
+    width: 90%;
+}
+.grid-item:hover {
+    background: white;
+}
+
+div.error {
+    margin-top: 25px;
+    color: red;
+    text-align: center;
+}
+div.error h1 {
+    font-size: 15em;
+}
+div.error h2 {
+    font-size: 1.8em;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
