@@ -1,17 +1,33 @@
 [
     {
-        "name" : "Main",
-        "path" : "/",
-        "controller" : "Index"
-    },
-    {
         "name" : "404",
         "path" : "*",
         "controller" : "errors\\Err404"
     },
     {
+        "name" : "Main",
+        "path" : "/",
+        "controller" : "Index"
+    },
+    {
         "name" : "Routing",
         "path" : "/routing/{id}",
-        "controller" : "Routing"
+        "controller" : "Routing",
+        "datas" : {
+            "authIsRequired" : false
+        }
+    },
+    {
+        "name" : "Routing2",
+        "path" : "/routing",
+        "controller" : "Routing",
+        "datas" : {
+            "authIsRequired" : true
+        }
+    },
+    {
+        "name" : "Posts",
+        "path" : "/posts",
+        "controller" : "Posts"
     }
 ]

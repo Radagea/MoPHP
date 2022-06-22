@@ -3,7 +3,7 @@
 namespace App\App\Routing;
 
 use App\App\Routing\Route;
-
+use App\Src\Guards\NavigationGuard;
 
 class Router {
     private Array $routes = [];
@@ -21,6 +21,8 @@ class Router {
         $this->err404 = new Route();
 
         $this->recognizeRoute();
+        $guard = new NavigationGuard($this->currentRoute);
+        $guard->checkPermission();
         $this->insertController();
     }
 
@@ -40,6 +42,7 @@ class Router {
             if ($this->currentRoute->compareWith($route)) {
                $this->currentRoute->setName($route->getName());
                $this->currentRoute->setController($route->getController());
+               $this->currentRoute->setDatas($route->getDatas());
                $van ++;
                break;
            }
@@ -59,24 +62,13 @@ class Router {
         if (!class_exists($namespace)) {
             $this->currentRoute = $this->err404;
             $this->insertController();
+            return ;
         }
 
-        $controller = new $namespace($this);
+        $controller = new $namespace($this->currentRoute);
         
         echo $controller->getView();
     }
 
-
-
-
-    //Getters
-
-    public function getCurrentRoute() {
-        return $this->currentRoute->getFullPath();
-    }
-
-    public function getParam(String $param) {
-        return $this->currentRoute->getParams()[$param];
-    }
 }
 

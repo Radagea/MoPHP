@@ -8,6 +8,7 @@ class Route {
     private string $fullPath;
     private string $controller;
     private Array $params = [];
+    private Array $datas = [];
 
     
     public function compareWith(Route $that) : bool {
@@ -54,6 +55,11 @@ class Route {
     public function addRoute($data) : Void {
         $this->name = $data['name'];
         $this->controller = $data['controller'];
+        if (array_key_exists('datas',$data)) {
+            if ($data['datas']) {
+                $this->datas = $data['datas'];
+            }
+        }
         $path = $this->pathClearanse($data['path']);
         $this->fullPath = $path;
 
@@ -105,6 +111,10 @@ class Route {
         return $this->params;
     }
 
+    public function getDatas() : Array {
+        return $this->datas;
+    }
+
     //Setters
 
     public function setName(String $name) : Void {
@@ -119,8 +129,12 @@ class Route {
         $this->controller = $controller;
     }
 
-    public function setParams($params) {
+    public function setParams(Array $params) : Void {
         $this->params = $params;
+    }
+
+    public function setDatas(Array $datas) : Void {
+        $this->datas = $datas;
     }
 
 }
