@@ -2,6 +2,7 @@
 
 namespace App\App\Controller;
 
+use App\App\App;
 use App\App\Routing\Route;
 use App\App\View\View;
 
@@ -11,6 +12,7 @@ abstract class AbstractController {
 
     public function __construct(Route $route) {
         $this->route = $route;
+        App::getApp();
     }
 
     public function getRoute() : String {

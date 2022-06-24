@@ -9,9 +9,18 @@ class Router {
     private Array $routes = [];
     private Route $currentRoute;
     private Route $err404;
+    private static Router $instance;
+
+    public static function getRouter() {
+        if (!isset(self::$instance)) {
+            self::$instance = new Router();
+        }
+
+        return self::$instance;
+    }
 
 
-    public function __construct() {
+    private function __construct() {
         $path = $_SERVER['DOCUMENT_ROOT']."/../routes.json";
         $fileData = file_get_contents($path);
         $datas = json_decode($fileData,true);
@@ -21,8 +30,10 @@ class Router {
         $this->err404 = new Route();
 
         $this->recognizeRoute();
-        $guard = new NavigationGuard($this->currentRoute);
-        $guard->checkPermission();
+        if (class_exists('App\\Src\\Guards\\NavigationGuard')) {
+            $guard = new NavigationGuard($this->currentRoute);
+            $guard->checkPermission();
+        }
         $this->insertController();
     }
 
