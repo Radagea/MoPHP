@@ -26,6 +26,6 @@ abstract class AbstractController {
         return null;
     }
 
-    abstract public function getView() : View;
+    abstract public function getView() : View|String;
 
 }

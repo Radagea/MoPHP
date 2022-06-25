@@ -73,9 +73,8 @@ class Router {
         if (!class_exists($namespace)) {
             $this->currentRoute = $this->err404;
             $this->insertController();
-            return ;
+            return;
         }
-
         $controller = new $namespace($this->currentRoute);
         
         echo $controller->getView();

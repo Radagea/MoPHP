@@ -18,7 +18,7 @@ class Route {
         $egyezes = 0;
         $thatParamNumber = 0;
         $count = 0;
-        
+
         if (count($this->paths) === count($comparablePaths)) {
             foreach ($comparablePaths as $path) {
                 if ($path !== '*!PARAM!*') {
@@ -65,6 +65,9 @@ class Route {
 
         $pathArr = explode('/',$path);
 
+        /*
+        * Load parameters from the URI
+        */
         foreach ($pathArr as $pathElement) {
             if (str_contains($pathElement,'{') && str_contains($pathElement,'}')) {
                 $searchFor = array("{","}");
@@ -74,9 +77,16 @@ class Route {
             } else {
                 array_push($this->paths,$pathElement);
             }
-        }        
+        }   
+        
     }
 
+    private function loadQueries() : Void {
+        $questionMarkpos = strpos($this->fullPath,'?');
+        $result = substr($this->fullPath,$questionMarkpos,strlen($this->fullPath)); 
+        $this->fullPath = substr($this->fullPath,0,$questionMarkpos);
+        $result = substr($result,1,strlen($result));                                        //For later I saved the queries into a string where I just need to explode at & after at =
+    }
 
     private function pathClearanse($path) : String {
         if (substr($path,-1) === '/') {
@@ -115,6 +125,10 @@ class Route {
         return $this->datas;
     }
 
+    public function getAllowQueries() : bool {
+        return $this->allowQueries;
+    }
+
     //Setters
 
     public function setName(String $name) : Void {
@@ -123,6 +137,9 @@ class Route {
 
     public function setFullPath(String $path) : Void {
         $this->fullPath = $this->pathClearanse($path);
+        if (str_contains($path,'?')) {
+            $this->loadQueries();
+        }
     }
 
     public function setController(String $controller) : Void {
