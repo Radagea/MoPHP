@@ -4,6 +4,7 @@ namespace App\App\Controller;
 
 use App\App\App;
 use App\App\Routing\Route;
+use App\App\Routing\Router;
 use App\App\View\View;
 
 abstract class AbstractController {
@@ -26,6 +27,6 @@ abstract class AbstractController {
         return null;
     }
 
-    abstract public function getView() : View|String;
+    abstract public function getView() : View;
 
 }

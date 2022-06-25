@@ -80,5 +80,9 @@ class Router {
         echo $controller->getView();
     }
 
+    public function getRoute() : Route {
+        return $this->currentRoute;
+    }
+
 }
 

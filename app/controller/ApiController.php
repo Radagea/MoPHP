@@ -4,9 +4,12 @@ namespace App\App\Controller;
 
 use App\App\Controller\Response;
 use App\App\Request;
+use App\App\Routing\Route;
+use App\App\Routing\Router;
 
 abstract class ApiController {
     protected Request $request;
+    private Route $route;
 
     abstract protected function GET_return() : Response;
     abstract protected function POST_return() : Response;
@@ -20,6 +23,7 @@ abstract class ApiController {
 
     public function __construct() {
         $this->request = Request::getRequest();
+        $this->route = Router::getRouter()->getRoute();
     }
 
     public function getView() : Response{
