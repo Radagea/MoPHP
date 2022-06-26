@@ -14,13 +14,13 @@ class Router {
     public static function getRouter() {
         if (!isset(self::$instance)) {
             self::$instance = new Router();
+            self::$instance->make();
         }
 
         return self::$instance;
     }
 
-
-    private function __construct() {
+    private function make() {
         $path = $_SERVER['DOCUMENT_ROOT']."/../routes.json";
         $fileData = file_get_contents($path);
         $datas = json_decode($fileData,true);
@@ -35,6 +35,9 @@ class Router {
             $guard->checkPermission();
         }
         $this->insertController();
+    }
+
+    private function __construct() {
     }
 
     private function add($datas) : Void {
@@ -75,7 +78,7 @@ class Router {
             $this->insertController();
             return;
         }
-        $controller = new $namespace($this->currentRoute);
+        $controller = new $namespace();
         
         echo $controller->getView();
     }

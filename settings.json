@@ -1,16 +1,10 @@
 {
-    "baseHTML" : "base.html",
-    "title" : "MoPHP",
-    "baseCSS" : "styles.css",
-    "favicon" : "favicon.ico",
-    "custom" : {
-        "asd" : "nyunyóka",
-        "ddd" : "cilinéni"
-    },
-    "components" : [
-        {
-            "name" : "header",
-            "file" : "Header"
-        }
-    ]
+    "database" : {
+        "type": "mysql",
+        "host": "localhost",
+        "port": "3306",
+        "databaseName": "mophp-test",
+        "username": "testuser",
+        "password" : "testuser"
+    }
 }

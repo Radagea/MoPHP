@@ -11,8 +11,8 @@ abstract class AbstractController {
 
     private Route $route;
 
-    public function __construct(Route $route) {
-        $this->route = $route;
+    public function __construct() {
+        $this->route = Router::getRouter()->getRoute();
         App::getApp();
     }
 

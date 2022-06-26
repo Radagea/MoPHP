@@ -20,7 +20,7 @@ class Base {
     }
 
     private function loadSettings() : Void {
-        $file = file_get_contents($_SERVER['DOCUMENT_ROOT']."/../settings.json");
+        $file = file_get_contents($_SERVER['DOCUMENT_ROOT']."/../base.json");
         $arr = json_decode($file,1);
         $this->baseFile = $arr["baseHTML"];
         $this->datas["title"] = $arr["title"];
