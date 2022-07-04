@@ -9,6 +9,7 @@ class Route {
     private string $controller;
     private Array $params = [];
     private Array $datas = [];
+    private String|null $navGuard = null;
 
     
     public function compareWith(Route $that) : bool {
@@ -55,6 +56,11 @@ class Route {
     public function addRoute($data) : Void {
         $this->name = $data['name'];
         $this->controller = $data['controller'];
+        if (array_key_exists('navGuard',$data)) {
+            $this->navGuard = $data['navGuard'];
+        } else {
+            $this->navGuard = null;
+        }
         if (array_key_exists('datas',$data)) {
             if ($data['datas']) {
                 $this->datas = $data['datas'];
@@ -129,6 +135,10 @@ class Route {
         return $this->allowQueries;
     }
 
+    public function getNavGuard() : String|null {
+        return $this->navGuard;
+    }
+
     //Setters
 
     public function setName(String $name) : Void {
@@ -152,6 +162,10 @@ class Route {
 
     public function setDatas(Array $datas) : Void {
         $this->datas = $datas;
+    }
+
+    public function setNavGuard(String|null $navGuard) : Void {
+        $this->navGuard = $navGuard;
     }
 
 }

@@ -12,37 +12,20 @@ class Posts extends ApiController {
     protected function GET_return() : Response {
         $asd = new PostModel();
         $beb = $asd->getAll();
-        $output = array();
-        foreach ($beb as $obj) {
-            $objarr['id'] = $obj->getId();
-            $objarr['title'] = $obj->getTitle();
-            $objarr['description'] = $obj->getDescription();
-            $objarr['content'] = $obj->getContent();
-            array_push($output,$objarr);
-        }
-        return new Response($output,200);
+        return new Response(datinmodel_array($beb),200);
     }
 
     protected function POST_return() : Response {
         $post = new PostModel();
-        $post->setId(2);
-        $output = [];
-        if ($arr = $post->getWhere('id')) {
-            if (is_array($arr)) {
-                foreach ($arr as $key => $value) {
-                    $obj['id'] = $value->getId();
-                    $obj['title'] = $value->getTitle();
-                    $obj['description'] = $value->getDescription();
-                    $obj['content'] = $value->getContent();
-                    array_push($output,$obj);
-                }
-            }
-        }
-        return new Response($output,200);
+        $post->setTitle('Gatya');
+        return new Response(datinmodel_array($post->getWhere('title')),200);
     }
 
     protected function PUT_return() : Response {
-        return new Response(['message' => 'PUT']);
+        $post = new PostModel();
+        $post->setId(3);
+        $post->getThis('id');
+        return new Response($post->getArray(),200);
     }
 
     protected function PATCH_return() : Response {

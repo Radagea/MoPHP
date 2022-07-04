@@ -4,12 +4,15 @@ namespace App\App;
 
 use App\App\Routing\Router;
 use App\App\Request;
+use App\App\Errors\MoError;
 
 class App {
 
     private Router $router;
     private static App $instance;
     private Request $request;
+    private String $enviroment;
+    private String|null $navGuard = null;
 
     private Array $databaseSettings;
 
@@ -21,8 +24,17 @@ class App {
         if (isset($datas['database'])) {
             $this->databaseSettings = $datas['database'];
         }
+        if (isset($datas['defaultNavigationGuard'])) {
+            $this->navGuard = $datas['defaultNavigationGuard'];
+        }
+        $this->enviroment = $datas["enviroment"];
         $this->request = Request::getRequest();
-        $this->router = Router::getRouter();
+        try {
+            $this->includeAssists();
+            $this->router = Router::getRouter();
+        } catch (MoError $error) {
+            echo $error->getError();
+        }
     }
 
     public static function getApp() : App {
@@ -35,5 +47,13 @@ class App {
 
     public function getDatabaseSettings() : Array {
         return $this->databaseSettings;
+    }
+
+    public function getNavGuard() : String|null {
+        return $this->navGuard;
+    }
+
+    private function includeAssists() : Void {
+        include_once($_SERVER['DOCUMENT_ROOT'].'/../app/packages/global/GlobalFunctions.php');
     }
 }

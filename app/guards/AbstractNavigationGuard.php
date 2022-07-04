@@ -22,7 +22,7 @@ abstract class AbstractNavigationGuard {
      * @param  String $data - the data what you want to get from the route
      * @return mixed it can return Null, String, Int or bool
      */
-    protected function get(String $data) {
+    protected function getData(String $data) {
         if (array_key_exists($data,$this->route->getDatas())) {
             return $this->route->getDatas()[$data];
         }

@@ -4,6 +4,7 @@ namespace App\App\Routing;
 
 use App\App\Routing\Route;
 use App\Src\Guards\NavigationGuard;
+use App\App\App;
 
 class Router {
     private Array $routes = [];
@@ -28,17 +29,27 @@ class Router {
         $this->add($datas);
 
         $this->err404 = new Route();
-
         $this->recognizeRoute();
-        if (class_exists('App\\Src\\Guards\\NavigationGuard')) {
-            $guard = new NavigationGuard($this->currentRoute);
-            $guard->checkPermission();
-        }
+        $this->navGuardCheck();
         $this->insertController();
     }
 
     private function __construct() {
     }
+
+    private function navGuardCheck() {
+        $navguard = null;
+        if ($this->currentRoute->getNavGuard() != null) {
+            $navGuard = $this->currentRoute->getNavGuard();
+        } else {
+            $navGuard = App::getApp()->getNavGuard();
+        }
+        if (class_exists($navGuard)) {
+            $guard = new $navGuard($this->currentRoute);
+            $guard->checkPermission();
+        }
+    }
+
 
     private function add($datas) : Void {
         foreach ($datas as $data) {
@@ -57,6 +68,7 @@ class Router {
                $this->currentRoute->setName($route->getName());
                $this->currentRoute->setController($route->getController());
                $this->currentRoute->setDatas($route->getDatas());
+               $this->currentRoute->setNavGuard($route->getNavGuard());
                $van ++;
                break;
            }

@@ -1,4 +1,6 @@
 {
+    "enviroment" : "dev",
+    "defaultNavigationGuard": "App\\Src\\Guards\\NavigationGuard",
     "database" : {
         "type": "mysql",
         "host": "localhost",

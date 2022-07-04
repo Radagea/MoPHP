@@ -2,8 +2,9 @@
 
 namespace App\Src\Controller;
 
-use App\App\Controller\AbstractController;
 use App\App\View\View;
+use App\App\Controller\AbstractController;
+use App\App\Errors\MoError;
 
 class Index extends AbstractController {
     public function getView(): View {

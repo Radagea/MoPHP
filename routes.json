@@ -28,6 +28,7 @@
     {
         "name" : "Posts",
         "path" : "/posts",
-        "controller" : "Posts"
+        "controller" : "Posts",
+        "navGuard" : "App\\Src\\Guards\\ApiGuard"
     }
 ]
