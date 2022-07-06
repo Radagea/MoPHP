@@ -18,7 +18,9 @@ class ErrorHandler {
         $this->twig = new Environment($this->loader);
         if (App::getApp()->getEnvironment() === 'dev') {
             $this->render();
-        }
+        } else {
+            $this->generateErrorFile();
+        }  
         
     }
 
@@ -34,5 +36,22 @@ class ErrorHandler {
     private function render() : Void {
         $content = $this->twig->render('Error.html',$this->getErrorArray());
         echo $content;
+    }
+
+    private function generateErrorFile() : Void {
+        $arr = array();
+        $fo['time'] = date("Y-m-d h:i:sa");
+        $arr['message'] = $this->error->getMessage();
+        $arr['file'] = $this->error->getFile();
+        $arr['traces'] = $this->error->getTrace();
+        $fo['error'] = $arr;
+        $temp_array = array();
+        $file = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/../errors.json');
+        if (!$file == '') {
+            $temp_array = json_decode($file,true);
+            array_push($temp_array,$fo);
+        }
+        $jsonData = json_encode($temp_array);
+        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/../errors.json',$jsonData);
     }
 }

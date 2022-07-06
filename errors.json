@@ -1,0 +1,128 @@
+[
+  {
+    "time": "2022-07-06 03:49:52pm",
+    "error": {
+      "message": "Not only DatinModel on the array please check it!",
+      "file": "/home/radagea/mophp-twig/app/packages/global/GlobalFunctions.php",
+      "traces": [
+        {
+          "file": "/home/radagea/mophp-twig/src/controller/Posts.php",
+          "line": 16,
+          "function": "datinmodel_array"
+        },
+        {
+          "file": "/home/radagea/mophp-twig/app/controller/ApiController.php",
+          "line": 32,
+          "function": "GET_return",
+          "class": "App\\Src\\Controller\\Posts",
+          "type": "->"
+        },
+        {
+          "file": "/home/radagea/mophp-twig/app/routing/Router.php",
+          "line": 95,
+          "function": "getView",
+          "class": "App\\App\\Controller\\ApiController",
+          "type": "->"
+        },
+        {
+          "file": "/home/radagea/mophp-twig/app/routing/Router.php",
+          "line": 34,
+          "function": "insertController",
+          "class": "App\\App\\Routing\\Router",
+          "type": "->"
+        },
+        {
+          "file": "/home/radagea/mophp-twig/app/routing/Router.php",
+          "line": 18,
+          "function": "make",
+          "class": "App\\App\\Routing\\Router",
+          "type": "->"
+        },
+        {
+          "file": "/home/radagea/mophp-twig/app/App.php",
+          "line": 35,
+          "function": "getRouter",
+          "class": "App\\App\\Routing\\Router",
+          "type": "::"
+        },
+        {
+          "file": "/home/radagea/mophp-twig/app/App.php",
+          "line": 44,
+          "function": "makeApp",
+          "class": "App\\App\\App",
+          "type": "->"
+        },
+        {
+          "file": "/home/radagea/mophp-twig/public/index.php",
+          "line": 7,
+          "function": "getApp",
+          "class": "App\\App\\App",
+          "type": "::"
+        }
+      ]
+    }
+  },
+  {
+    "time": "2022-07-06 03:50:03pm",
+    "error": {
+      "message": "Not only DatinModel on the array please check it!",
+      "file": "/home/radagea/mophp-twig/app/packages/global/GlobalFunctions.php",
+      "traces": [
+        {
+          "file": "/home/radagea/mophp-twig/src/controller/Posts.php",
+          "line": 16,
+          "function": "datinmodel_array"
+        },
+        {
+          "file": "/home/radagea/mophp-twig/app/controller/ApiController.php",
+          "line": 32,
+          "function": "GET_return",
+          "class": "App\\Src\\Controller\\Posts",
+          "type": "->"
+        },
+        {
+          "file": "/home/radagea/mophp-twig/app/routing/Router.php",
+          "line": 95,
+          "function": "getView",
+          "class": "App\\App\\Controller\\ApiController",
+          "type": "->"
+        },
+        {
+          "file": "/home/radagea/mophp-twig/app/routing/Router.php",
+          "line": 34,
+          "function": "insertController",
+          "class": "App\\App\\Routing\\Router",
+          "type": "->"
+        },
+        {
+          "file": "/home/radagea/mophp-twig/app/routing/Router.php",
+          "line": 18,
+          "function": "make",
+          "class": "App\\App\\Routing\\Router",
+          "type": "->"
+        },
+        {
+          "file": "/home/radagea/mophp-twig/app/App.php",
+          "line": 35,
+          "function": "getRouter",
+          "class": "App\\App\\Routing\\Router",
+          "type": "::"
+        },
+        {
+          "file": "/home/radagea/mophp-twig/app/App.php",
+          "line": 44,
+          "function": "makeApp",
+          "class": "App\\App\\App",
+          "type": "->"
+        },
+        {
+          "file": "/home/radagea/mophp-twig/public/index.php",
+          "line": 7,
+          "function": "getApp",
+          "class": "App\\App\\App",
+          "type": "::"
+        }
+      ]
+    }
+  }
+]
