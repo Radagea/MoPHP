@@ -2,6 +2,7 @@
 
 namespace App\App\Errors;
 
+use App\App\App;
 use App\App\Errors\MoError;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -15,7 +16,10 @@ class ErrorHandler {
         $this->error = $error;
         $this->loader = new FilesystemLoader(__DIR__."/GUI");
         $this->twig = new Environment($this->loader);
-        $this->render();
+        if (App::getApp()->getEnvironment() === 'dev') {
+            $this->render();
+        }
+        
     }
 
     private function getErrorArray() : Array {

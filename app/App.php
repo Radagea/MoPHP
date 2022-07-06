@@ -12,7 +12,7 @@ class App {
     private Router $router;
     private static App $instance;
     private Request $request;
-    private String $enviroment;
+    private String $environment;
     private String|null $navGuard = null;
 
     private Array $databaseSettings;
@@ -28,7 +28,7 @@ class App {
         if (isset($datas['defaultNavigationGuard'])) {
             $this->navGuard = $datas['defaultNavigationGuard'];
         }
-        $this->enviroment = $datas["enviroment"];
+        $this->environment = $datas["environment"];
         $this->request = Request::getRequest();
         try {
             $this->includeAssists();
@@ -52,6 +52,10 @@ class App {
 
     public function getNavGuard() : String|null {
         return $this->navGuard;
+    }
+
+    public function getEnvironment() : String {
+        return $this->environment;
     }
 
     private function includeAssists() : Void {
