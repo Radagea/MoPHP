@@ -12,6 +12,7 @@ class Posts extends ApiController {
     protected function GET_return() : Response {
         $asd = new PostModel();
         $beb = $asd->getAll();
+        $beb['asd'] = ['ddd'];
         return new Response(datinmodel_array($beb),200);
     }
 

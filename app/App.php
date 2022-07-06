@@ -2,6 +2,7 @@
 
 namespace App\App;
 
+use App\App\Errors\ErrorHandler;
 use App\App\Routing\Router;
 use App\App\Request;
 use App\App\Errors\MoError;
@@ -33,7 +34,7 @@ class App {
             $this->includeAssists();
             $this->router = Router::getRouter();
         } catch (MoError $error) {
-            echo $error->getError();
+            new ErrorHandler($error);
         }
     }
 
